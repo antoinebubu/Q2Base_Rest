@@ -14,8 +14,8 @@ import net.ko.kobject.KListObject;
 @Table(name="reponse")
 public class KReponse extends KObject {
 	private boolean good;
+	private int idQuestion;
 	private String libelle;
-	private int question_id;
 	private KQuestion question;
 	private KListObject<KReponse_utilisateur> reponse_utilisateurs;
 
@@ -31,18 +31,18 @@ public class KReponse extends KObject {
 		return this.good;
 	}
 	/**
+	 * return the value of idQuestion
+	 * @return idQuestion
+	 */
+	public int getIdQuestion(){
+		return this.idQuestion;
+	}
+	/**
 	 * return the value of libelle
 	 * @return libelle
 	 */
 	public String getLibelle(){
 		return this.libelle;
-	}
-	/**
-	 * return the value of question_id
-	 * @return question_id
-	 */
-	public int getQuestion_id(){
-		return this.question_id;
 	}
 	/**
 	 * return the value of question
@@ -67,18 +67,18 @@ public class KReponse extends KObject {
 		this.good=aGood;
 	}
 	/**
+	 * set the value of idQuestion
+	 * @param aIdQuestion
+	 */
+	public void setIdQuestion(int aIdQuestion){
+		this.idQuestion=aIdQuestion;
+	}
+	/**
 	 * set the value of libelle
 	 * @param aLibelle
 	 */
 	public void setLibelle(String aLibelle){
 		this.libelle=aLibelle;
-	}
-	/**
-	 * set the value of question_id
-	 * @param aQuestion_id
-	 */
-	public void setQuestion_id(int aQuestion_id){
-		this.question_id=aQuestion_id;
 	}
 	/**
 	 * set the value of question
@@ -96,6 +96,6 @@ public class KReponse extends KObject {
 	}
 	@Override
 	public String toString() {
-		return " [libelle] = " + libelle+" [good] = " + good+" [question_id] = " + question_id;
+		return " [idQuestion] = " + idQuestion+" [libelle] = " + libelle+" [good] = " + good;
 	}
 }

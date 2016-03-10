@@ -14,9 +14,9 @@ import net.ko.persistence.annotation.Id;
 @Table(name="groupe_utilisateur")
 public class KGroupe_utilisateur extends KObject {
 	@Id
-	private int groupe_id;
+	private int idGroupe;
 	@Id
-	private int utilisateur_id;
+	private int idUtilisateur;
 	private KGroupe groupe;
 	private KUtilisateur utilisateur;
 
@@ -25,18 +25,18 @@ public class KGroupe_utilisateur extends KObject {
 		//belongsTo(KUtilisateur.class);belongsTo(KGroupe.class);
 	}
 	/**
-	 * return the value of groupe_id
-	 * @return groupe_id
+	 * return the value of idGroupe
+	 * @return idGroupe
 	 */
-	public int getGroupe_id(){
-		return this.groupe_id;
+	public int getIdGroupe(){
+		return this.idGroupe;
 	}
 	/**
-	 * return the value of utilisateur_id
-	 * @return utilisateur_id
+	 * return the value of idUtilisateur
+	 * @return idUtilisateur
 	 */
-	public int getUtilisateur_id(){
-		return this.utilisateur_id;
+	public int getIdUtilisateur(){
+		return this.idUtilisateur;
 	}
 	/**
 	 * return the value of groupe
@@ -54,18 +54,18 @@ public class KGroupe_utilisateur extends KObject {
 	}
 
 	/**
-	 * set the value of groupe_id
-	 * @param aGroupe_id
+	 * set the value of idGroupe
+	 * @param aIdGroupe
 	 */
-	public void setGroupe_id(int aGroupe_id){
-		this.groupe_id=aGroupe_id;
+	public void setIdGroupe(int aIdGroupe){
+		this.idGroupe=aIdGroupe;
 	}
 	/**
-	 * set the value of utilisateur_id
-	 * @param aUtilisateur_id
+	 * set the value of idUtilisateur
+	 * @param aIdUtilisateur
 	 */
-	public void setUtilisateur_id(int aUtilisateur_id){
-		this.utilisateur_id=aUtilisateur_id;
+	public void setIdUtilisateur(int aIdUtilisateur){
+		this.idUtilisateur=aIdUtilisateur;
 	}
 	/**
 	 * set the value of groupe
@@ -83,6 +83,6 @@ public class KGroupe_utilisateur extends KObject {
 	}
 	@Override
 	public String toString() {
-		return " [groupe_id] = " + groupe_id+" [utilisateur_id] = " + utilisateur_id;
+		return " [idUtilisateur] = " + idUtilisateur+" [idGroupe] = " + idGroupe;
 	}
 }

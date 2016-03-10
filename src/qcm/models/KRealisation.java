@@ -14,9 +14,9 @@ import net.ko.kobject.KListObject;
 @Table(name="realisation")
 public class KRealisation extends KObject {
 	private java.sql.Date date;
-	private int questionnaire_id;
+	private int idQuestionnaire;
+	private int idUtilisateur;
 	private int score;
-	private int utilisateur_id;
 	private KQuestionnaire questionnaire;
 	private KListObject<KReponse_utilisateur> reponse_utilisateurs;
 	private KUtilisateur utilisateur;
@@ -33,11 +33,18 @@ public class KRealisation extends KObject {
 		return this.date;
 	}
 	/**
-	 * return the value of questionnaire_id
-	 * @return questionnaire_id
+	 * return the value of idQuestionnaire
+	 * @return idQuestionnaire
 	 */
-	public int getQuestionnaire_id(){
-		return this.questionnaire_id;
+	public int getIdQuestionnaire(){
+		return this.idQuestionnaire;
+	}
+	/**
+	 * return the value of idUtilisateur
+	 * @return idUtilisateur
+	 */
+	public int getIdUtilisateur(){
+		return this.idUtilisateur;
 	}
 	/**
 	 * return the value of score
@@ -45,13 +52,6 @@ public class KRealisation extends KObject {
 	 */
 	public int getScore(){
 		return this.score;
-	}
-	/**
-	 * return the value of utilisateur_id
-	 * @return utilisateur_id
-	 */
-	public int getUtilisateur_id(){
-		return this.utilisateur_id;
 	}
 	/**
 	 * return the value of questionnaire
@@ -83,11 +83,18 @@ public class KRealisation extends KObject {
 		this.date=aDate;
 	}
 	/**
-	 * set the value of questionnaire_id
-	 * @param aQuestionnaire_id
+	 * set the value of idQuestionnaire
+	 * @param aIdQuestionnaire
 	 */
-	public void setQuestionnaire_id(int aQuestionnaire_id){
-		this.questionnaire_id=aQuestionnaire_id;
+	public void setIdQuestionnaire(int aIdQuestionnaire){
+		this.idQuestionnaire=aIdQuestionnaire;
+	}
+	/**
+	 * set the value of idUtilisateur
+	 * @param aIdUtilisateur
+	 */
+	public void setIdUtilisateur(int aIdUtilisateur){
+		this.idUtilisateur=aIdUtilisateur;
 	}
 	/**
 	 * set the value of score
@@ -95,13 +102,6 @@ public class KRealisation extends KObject {
 	 */
 	public void setScore(int aScore){
 		this.score=aScore;
-	}
-	/**
-	 * set the value of utilisateur_id
-	 * @param aUtilisateur_id
-	 */
-	public void setUtilisateur_id(int aUtilisateur_id){
-		this.utilisateur_id=aUtilisateur_id;
 	}
 	/**
 	 * set the value of questionnaire
@@ -126,6 +126,6 @@ public class KRealisation extends KObject {
 	}
 	@Override
 	public String toString() {
-		return " [score] = " + score+" [questionnaire_id] = " + questionnaire_id+" [date] = " + date+" [utilisateur_id] = " + utilisateur_id;
+		return " [score] = " + score+" [idUtilisateur] = " + idUtilisateur+" [idQuestionnaire] = " + idQuestionnaire+" [date] = " + date;
 	}
 }

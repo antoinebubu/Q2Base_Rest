@@ -13,8 +13,8 @@ import net.ko.kobject.KListObject;
 @Entity
 @Table(name="question")
 public class KQuestion extends KObject {
+	private int idQuestionnaire;
 	private String libelle;
-	private int questionnaire_id;
 	private KListObject<KReponse> reponses;
 	private KQuestionnaire questionnaire;
 
@@ -23,18 +23,18 @@ public class KQuestion extends KObject {
 		//belongsTo(KQuestionnaire.class);hasMany(KReponse.class);
 	}
 	/**
+	 * return the value of idQuestionnaire
+	 * @return idQuestionnaire
+	 */
+	public int getIdQuestionnaire(){
+		return this.idQuestionnaire;
+	}
+	/**
 	 * return the value of libelle
 	 * @return libelle
 	 */
 	public String getLibelle(){
 		return this.libelle;
-	}
-	/**
-	 * return the value of questionnaire_id
-	 * @return questionnaire_id
-	 */
-	public int getQuestionnaire_id(){
-		return this.questionnaire_id;
 	}
 	/**
 	 * return the value of reponses
@@ -52,18 +52,18 @@ public class KQuestion extends KObject {
 	}
 
 	/**
+	 * set the value of idQuestionnaire
+	 * @param aIdQuestionnaire
+	 */
+	public void setIdQuestionnaire(int aIdQuestionnaire){
+		this.idQuestionnaire=aIdQuestionnaire;
+	}
+	/**
 	 * set the value of libelle
 	 * @param aLibelle
 	 */
 	public void setLibelle(String aLibelle){
 		this.libelle=aLibelle;
-	}
-	/**
-	 * set the value of questionnaire_id
-	 * @param aQuestionnaire_id
-	 */
-	public void setQuestionnaire_id(int aQuestionnaire_id){
-		this.questionnaire_id=aQuestionnaire_id;
 	}
 	/**
 	 * set the value of reponses
@@ -81,6 +81,6 @@ public class KQuestion extends KObject {
 	}
 	@Override
 	public String toString() {
-		return " [libelle] = " + libelle+" [questionnaire_id] = " + questionnaire_id;
+		return " [libelle] = " + libelle+" [idQuestionnaire] = " + idQuestionnaire;
 	}
 }

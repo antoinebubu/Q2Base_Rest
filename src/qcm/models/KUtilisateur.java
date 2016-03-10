@@ -13,11 +13,11 @@ import net.ko.kobject.KListObject;
 @Entity
 @Table(name="utilisateur")
 public class KUtilisateur extends KObject {
+	private int idRang;
 	private String mail;
 	private String nom;
 	private String password;
 	private String prenom;
-	private int rang_id;
 	private KRang rang;
 	private KListObject<KGroupe_utilisateur> groupe_utilisateurs;
 	private KListObject<KRealisation> realisations;
@@ -25,6 +25,13 @@ public class KUtilisateur extends KObject {
 	public KUtilisateur() {
 		super();
 		//hasMany(KRealisation.class);hasMany(KGroupe_utilisateur.class);belongsTo(KRang.class);
+	}
+	/**
+	 * return the value of idRang
+	 * @return idRang
+	 */
+	public int getIdRang(){
+		return this.idRang;
 	}
 	/**
 	 * return the value of mail
@@ -55,13 +62,6 @@ public class KUtilisateur extends KObject {
 		return this.prenom;
 	}
 	/**
-	 * return the value of rang_id
-	 * @return rang_id
-	 */
-	public int getRang_id(){
-		return this.rang_id;
-	}
-	/**
 	 * return the value of rang
 	 * @return rang
 	 */
@@ -83,6 +83,13 @@ public class KUtilisateur extends KObject {
 		return this.realisations;
 	}
 
+	/**
+	 * set the value of idRang
+	 * @param aIdRang
+	 */
+	public void setIdRang(int aIdRang){
+		this.idRang=aIdRang;
+	}
 	/**
 	 * set the value of mail
 	 * @param aMail
@@ -112,13 +119,6 @@ public class KUtilisateur extends KObject {
 		this.prenom=aPrenom;
 	}
 	/**
-	 * set the value of rang_id
-	 * @param aRang_id
-	 */
-	public void setRang_id(int aRang_id){
-		this.rang_id=aRang_id;
-	}
-	/**
 	 * set the value of rang
 	 * @param aRang
 	 */
@@ -141,6 +141,6 @@ public class KUtilisateur extends KObject {
 	}
 	@Override
 	public String toString() {
-		return " [prenom] = " + prenom+" [mail] = " + mail+" [rang_id] = " + rang_id+" [password] = " + password+" [nom] = " + nom;
+		return " [prenom] = " + prenom+" [mail] = " + mail+" [idRang] = " + idRang+" [password] = " + password+" [nom] = " + nom;
 	}
 }

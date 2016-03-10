@@ -14,7 +14,7 @@ import net.ko.kobject.KListObject;
 @Table(name="questionnaire")
 public class KQuestionnaire extends KObject {
 	private java.sql.Date date;
-	private int domaine_id;
+	private int idDomaine;
 	private String libelle;
 	private KDomaine domaine;
 	private KListObject<KGroupe_questionnaire> groupe_questionnaires;
@@ -33,11 +33,11 @@ public class KQuestionnaire extends KObject {
 		return this.date;
 	}
 	/**
-	 * return the value of domaine_id
-	 * @return domaine_id
+	 * return the value of idDomaine
+	 * @return idDomaine
 	 */
-	public int getDomaine_id(){
-		return this.domaine_id;
+	public int getIdDomaine(){
+		return this.idDomaine;
 	}
 	/**
 	 * return the value of libelle
@@ -83,11 +83,11 @@ public class KQuestionnaire extends KObject {
 		this.date=aDate;
 	}
 	/**
-	 * set the value of domaine_id
-	 * @param aDomaine_id
+	 * set the value of idDomaine
+	 * @param aIdDomaine
 	 */
-	public void setDomaine_id(int aDomaine_id){
-		this.domaine_id=aDomaine_id;
+	public void setIdDomaine(int aIdDomaine){
+		this.idDomaine=aIdDomaine;
 	}
 	/**
 	 * set the value of libelle
@@ -126,6 +126,6 @@ public class KQuestionnaire extends KObject {
 	}
 	@Override
 	public String toString() {
-		return " [libelle] = " + libelle+" [date] = " + date+" [domaine_id] = " + domaine_id;
+		return " [libelle] = " + libelle+" [date] = " + date+" [idDomaine] = " + idDomaine;
 	}
 }
