@@ -13,7 +13,7 @@ import net.ko.kobject.KListObject;
 import qcm.models.KQuestionnaire;
 
 @Path("/quiz")
-public class Questionnaire {
+public class Questionnaire extends RestBase {
 	
 	@GET
 	@Path("/{id}")
@@ -27,9 +27,9 @@ public class Questionnaire {
 	@GET
 	@Path("/all")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getAll(){
-		KListObject<KQuestionnaire> quiz = KoSession.kloadMany(KQuestionnaire.class);
-		Gson gson = new Gson();
-		return gson.toJson(quiz);
+	public String getAll() {
+		KListObject<KQuestionnaire> questionnaires = KoSession.kloadMany(KQuestionnaire.class);
+		String result = gson.toJson(questionnaires.asAL());
+		return result;
 	}
 }
