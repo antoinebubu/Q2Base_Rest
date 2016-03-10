@@ -15,9 +15,13 @@ import net.ko.kobject.KListObject;
 @Entity
 @Table(name="question")
 public class KQuestion extends KObject {
+	@Expose
 	private int idQuestionnaire;
+	@Expose
 	private String libelle;
+	@Expose
 	private KListObject<KReponse> reponses;
+	@Expose
 	private KQuestionnaire questionnaire;
 
 	public KQuestion() {

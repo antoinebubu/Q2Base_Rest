@@ -18,8 +18,6 @@ public class KlistObjectAdapter
 		return elm;
 	}
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/master
+
+
