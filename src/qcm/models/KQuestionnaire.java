@@ -1,5 +1,7 @@
 package qcm.models;
 
+import com.google.gson.annotations.Expose;
+
 import net.ko.kobject.KObject;
 import net.ko.persistence.annotation.Entity;
 import net.ko.persistence.annotation.Table;
@@ -13,11 +15,16 @@ import net.ko.kobject.KListObject;
 @Entity
 @Table(name="questionnaire")
 public class KQuestionnaire extends KObject {
+	@Expose
 	private java.sql.Date date;
+	@Expose
 	private int idDomaine;
+	@Expose
 	private String libelle;
+	@Expose
 	private KDomaine domaine;
 	private KListObject<KGroupe_questionnaire> groupe_questionnaires;
+	@Expose
 	private KListObject<KQuestion> questions;
 	private KListObject<KRealisation> realisations;
 
