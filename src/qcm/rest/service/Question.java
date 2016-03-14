@@ -48,19 +48,34 @@ public class Question extends RestBase {
 		return result;
 	}	
 	
+//	 Get questionnaire/id
+	
+	@GET
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getAll() {
+		KListObject<KQuestion> questions = KoSession.kloadMany(KQuestion.class);
+		String result = gson.toJson(questions.asAL());
+		return result;
+	}	
+	
 	
 //	Put question
 	
 	@PUT
 	@Path("/")
 	@Consumes("application/x-www-form-urlencoded")
-	public String addOne(MultivaluedMap<String, String> formParams)
+	public String addOne(MultivaluedMap<String, Integer> formParams)
 			throws SQLException {
 		KQuestion question = new KQuestion();
 		
+		try {
+			KoHttp.getDao(KQuestion.class).create(question);
+			return "{\"message\": \"Insert\"}";
+		} catch (Exception e) {
+			return "erreur";
+		}
 		
-		KoHttp.getDao(KQuestion.class).create(question);
-		return "{\"message\": \"Insert\"}";
 		
 		
 	}
