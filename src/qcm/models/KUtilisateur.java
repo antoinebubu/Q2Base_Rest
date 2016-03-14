@@ -28,7 +28,7 @@ public class KUtilisateur extends KObject {
 
 	public KUtilisateur() {
 		super();
-		//hasMany(KRealisation.class);hasMany(KGroupe_utilisateur.class);belongsTo(KRang.class);
+		hasMany(KRealisation.class);hasMany(KGroupe_utilisateur.class);belongsTo(KRang.class);
 	}
 	/**
 	 * return the value of idRang

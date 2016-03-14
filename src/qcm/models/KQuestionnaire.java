@@ -26,11 +26,12 @@ public class KQuestionnaire extends KObject {
 	private KListObject<KGroupe_questionnaire> groupe_questionnaires;
 	@Expose
 	private KListObject<KQuestion> questions;
+	@Expose
 	private KListObject<KRealisation> realisations;
 
 	public KQuestionnaire() {
 		super();
-		//hasMany(KRealisation.class);hasMany(KQuestion.class);hasMany(KGroupe_questionnaire.class);belongsTo(KDomaine.class);
+		hasMany(KRealisation.class);hasMany(KQuestion.class);hasMany(KGroupe_questionnaire.class);belongsTo(KDomaine.class);
 	}
 	/**
 	 * return the value of date

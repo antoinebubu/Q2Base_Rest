@@ -16,6 +16,7 @@ import net.ko.kobject.KListObject;
 @Table(name="groupe")
 public class KGroupe extends KObject {
 	private String code;
+	@Expose
 	private String libelle;
 	@Expose
 	private KListObject<KQuestionnaire> questionnaires;
@@ -24,7 +25,8 @@ public class KGroupe extends KObject {
 
 	public KGroupe() {
 		super();
-		//hasMany(KGroupe_utilisateur.class);hasMany(KGroupe_questionnaire.class);
+		//hasMany(KGroupe_utilisateur.class);
+		hasMany(KGroupe_questionnaire.class);
 	}
 	/**
 	 * return the value of code

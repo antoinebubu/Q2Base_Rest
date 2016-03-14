@@ -11,9 +11,10 @@ import com.google.gson.Gson;
 import net.ko.framework.KoSession;
 import net.ko.kobject.KListObject;
 import qcm.models.KQuestion;
+import qcm.models.KQuestionnaire;
 
 @Path("/question")
-public class Question extends RestBase {
+public class Question extends CrudRestBase {
 	
 	@GET
 	@Path("/{id}")
@@ -32,4 +33,10 @@ public class Question extends RestBase {
 		String result = gson.toJson(questions.asAL());
 		return result;
 	}	
+	
+	public Question() {
+		super();
+		kobjectClass = KQuestion.class;
+		displayName = "question";
+	}
 }
