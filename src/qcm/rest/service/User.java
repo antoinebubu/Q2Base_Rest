@@ -74,39 +74,35 @@ public class User extends CrudRestBase {
 		}
 		return result;
 	}
-	
-	
-	/*@GET
-	@Path("/all")
-	@Produces(MediaType.APPLICATION_JSON)
-	public String getAll() {
-		KListObject<KUtilisateur> users = KoHttp.getDao(KUtilisateur.class).readAll();
-		Gson gson = new Gson();
-		return gson.toJson(users.asAL());
-	}
-	
-	@PUT
-	@Path("/add")
-	@Consumes("application/x-www-form-urlencoded")
-	public String addOne(MultivaluedHashMap<String, String> formParams) {
-		KUtilisateur user = new KUtilisateur();
-		String message = "{\"message\":\"Insertion réussie\"}";
-		for(String param:formParams.keySet()) {
-			try {
-				String value = formParams.getFirst(param) + "";
-				value = value.replaceFirst("^\\[(.*)\\]$", "$1");
-				user.setAttribute(param, value, false);
-			} catch (SecurityException | IllegalArgumentException | NoSuchFieldException | IllegalAccessException
-					| InvocationTargetException e) {
-			}
-		}
-		
-		try {
-			KoHttp.getDao(KUtilisateur.class).create(user);
-		} catch (Exception e) {
-			message = "{\"erreur\":\"" + e.getMessage() + "\"}";
-		}
-		return message;
-	}*/
-	
+
+	/*
+	 * @GET
+	 * 
+	 * @Path("/all")
+	 * 
+	 * @Produces(MediaType.APPLICATION_JSON) public String getAll() {
+	 * KListObject<KUtilisateur> users =
+	 * KoHttp.getDao(KUtilisateur.class).readAll(); Gson gson = new Gson();
+	 * return gson.toJson(users.asAL()); }
+	 * 
+	 * @PUT
+	 * 
+	 * @Path("/add")
+	 * 
+	 * @Consumes("application/x-www-form-urlencoded") public String
+	 * addOne(MultivaluedHashMap<String, String> formParams) { KUtilisateur user
+	 * = new KUtilisateur(); String message =
+	 * "{\"message\":\"Insertion réussie\"}"; for(String
+	 * param:formParams.keySet()) { try { String value =
+	 * formParams.getFirst(param) + ""; value =
+	 * value.replaceFirst("^\\[(.*)\\]$", "$1"); user.setAttribute(param, value,
+	 * false); } catch (SecurityException | IllegalArgumentException |
+	 * NoSuchFieldException | IllegalAccessException | InvocationTargetException
+	 * e) { } }
+	 * 
+	 * try { KoHttp.getDao(KUtilisateur.class).create(user); } catch (Exception
+	 * e) { message = "{\"erreur\":\"" + e.getMessage() + "\"}"; } return
+	 * message; }
+	 */
+
 }

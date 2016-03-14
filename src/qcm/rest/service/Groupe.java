@@ -6,64 +6,34 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.google.gson.Gson;
-
-import net.ko.framework.KoHttp;
 import net.ko.framework.KoSession;
-import net.ko.kobject.KListObject;
 import qcm.models.KGroupe;
 
 @Path("/groupe")
 public class Groupe extends CrudRestBase {
-	
+
 	public Groupe() {
 		super();
 		kobjectClass = KGroupe.class;
 		displayName = "groupe";
 	}
 
-	/*@GET
-	@Path("/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public String getOne(@PathParam("id") int id) {
-		KGroupe groupe = KoSession.kloadOne(KGroupe.class, id);
-		Gson gson = new Gson();
-		return gson.toJson(groupe);
-	}
-	
 	@GET
-	@Path("/all")
+	@Path("/{id}/users")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getAll() {
-		KListObject<KGroupe> groupes = KoHttp.getDao(KGroupe.class).readAll();
-		Gson gson = new Gson();
-		return gson.toJson(groupes.asAL());
+	public String getUsers(@PathParam("id") int id) {
+		KGroupe groupe = KoSession.kloadOne(KGroupe.class, id);
+		String result = gson.toJson(groupe.getUsers().asAL());
+		return result;
 	}
-	
-	@PUT
-	@Path("/add")
-	@Consumes("application/x-www-form-urlencoded")
-	public String addOne(MultivaluedHashMap<String, String> formParams) {
-		KGroupe groupe = new KGroupe();
-		String message =  "{\"message\":\"Insertion réussie\"}";
-		for(String param:formParams.keySet()) {
-			try {
-				String value = formParams.getFirst(param) + "";
-				value = value.replaceFirst("^\\[(.*)\\]$", "$1");
-				groupe.setAttribute(param, value, false);
-			} catch (SecurityException | IllegalArgumentException | NoSuchFieldException | IllegalAccessException
-					| InvocationTargetException e) {
-			}
-		}
-		
 
-		try {
-			KoHttp.getDao(KGroupe.class).create(groupe);
-		} catch (Exception e) {
-			message = "{\"erreur\":\"" + e.getMessage() + "\"}";
-		}
-		
-		return message;
-	}*/
-	
+	@GET
+	@Path("/{id}/quiz")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getQuiz(@PathParam("id") int id) {
+		KGroupe groupe = KoSession.kloadOne(KGroupe.class, id);
+		String result = gson.toJson(groupe.getQuestionnaires().asAL());
+		return result;
+	}
+
 }
