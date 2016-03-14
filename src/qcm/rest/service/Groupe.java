@@ -17,6 +17,7 @@ import qcm.models.KGroupe;
 public class Groupe extends CrudRestBase {
 	
 	public Groupe() {
+		super();
 		kobjectClass = KGroupe.class;
 		displayName = "groupe";
 	}
