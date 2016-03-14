@@ -60,7 +60,9 @@ public class Question extends RestBase {
 		
 		
 		KoHttp.getDao(KQuestion.class).create(question);
-		return "{\"message\": \"Insert OK\"}";
+		return "{\"message\": \"Insert\"}";
+		
+		
 	}
 	
 	
@@ -74,12 +76,12 @@ public class Question extends RestBase {
 		KQuestion question = KoHttp.getDao(KQuestion.class).readById(id);
 		
 		if (!question.isLoaded())
-			return "{\"message\": \"Error while loading Answer with id " + String.valueOf(id) + "\"}";
+			return "{\"message\": \"erreur au chargement de l'id " + String.valueOf(id) + "\"}";
 		
 		
 		KoHttp.getDao(KQuestion.class).update(question);
 		
-		return "{\"message\": \"Update OK\"}";
+		return "{\"message\": \"Update\"}";
 	}
 	
 	
@@ -90,7 +92,7 @@ public class Question extends RestBase {
 	public String deleteQuestion(@PathParam("id") int id){
 		KQuestion question = KoHttp.getDao(KQuestion.class).readById(id);
 		if (!question.isLoaded())
-			return "{\"message\": \"Error while loading Answer with id " + String.valueOf(id) + "\"}";
+			return "{\"message\": \"erreur au chargement de l'id " + String.valueOf(id) + "\"}";
 		
 		try {
 			KoHttp.getDao(KQuestion.class).delete(question);
@@ -98,17 +100,17 @@ public class Question extends RestBase {
 			return "{\"message\": \" "+e.getMessage()+"\"}";
 		}
 		
-		return "{\"message\": \"Delete OK\"}";
+		return "{\"message\": \"Delete\"}";
 	}
 
 //	Get question/ :id/reponses
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/{id}/answers")
+	@Path("/{id}/reponses")
 	public String getAnswers(@PathParam("id") int id) {
 		KQuestion question = KoSession.kloadOne(KQuestion.class, id);
 		if(!question.isLoaded())
-			return "{\"message\": \"Error while loading Question with id " + String.valueOf(id) + "\"}";
+			return "{\"message\": \"erreur au chargement de l'id " + String.valueOf(id) + "\"}";
 		
 		return gson.toJson(question.getReponses());
 	}
