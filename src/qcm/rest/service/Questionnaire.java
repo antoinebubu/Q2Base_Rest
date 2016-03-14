@@ -18,7 +18,6 @@ import net.ko.framework.KoHttp;
 import net.ko.framework.KoSession;
 import net.ko.kobject.KListObject;
 import qcm.models.KQuestionnaire;
-import qcm.models.KUtilisateur;
 
 @Path("/quiz")
 public class Questionnaire extends RestBase {
