@@ -21,6 +21,8 @@ public class KUtilisateur extends KObject {
 	private String password;
 	private String prenom;
 	private KRang rang;
+	@Expose
+	private KListObject<KGroupe> groupes;
 	private KListObject<KGroupe_utilisateur> groupe_utilisateurs;
 	private KListObject<KRealisation> realisations;
 
@@ -141,6 +143,11 @@ public class KUtilisateur extends KObject {
 	public void setRealisations(KListObject<KRealisation> aRealisations){
 		this.realisations=aRealisations;
 	}
+	
+	public KListObject<KGroupe> getGroupes() {
+		return groupes;
+	}
+	
 	@Override
 	public String toString() {
 		return " [prenom] = " + prenom+" [mail] = " + mail+" [idRang] = " + idRang+" [password] = " + password+" [nom] = " + nom;
