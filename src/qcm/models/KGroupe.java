@@ -17,6 +17,8 @@ import net.ko.kobject.KListObject;
 public class KGroupe extends KObject {
 	private String code;
 	private String libelle;
+	@Expose
+	private KListObject<KQuestionnaire> questionnaires;
 	private KListObject<KGroupe_questionnaire> groupe_questionnaires;
 	private KListObject<KGroupe_utilisateur> groupe_utilisateurs;
 
@@ -81,6 +83,11 @@ public class KGroupe extends KObject {
 	public void setGroupe_utilisateurs(KListObject<KGroupe_utilisateur> aGroupe_utilisateurs){
 		this.groupe_utilisateurs=aGroupe_utilisateurs;
 	}
+	
+	public KListObject<KQuestionnaire> getQuestionnaires() {
+		return questionnaires;
+	}
+	
 	@Override
 	public String toString() {
 		return " [libelle] = " + libelle+" [code] = " + code;
