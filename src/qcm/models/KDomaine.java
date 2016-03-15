@@ -15,6 +15,7 @@ import net.ko.kobject.KListObject;
 @Entity
 @Table(name="domaine")
 public class KDomaine extends KObject {
+	@Expose
 	private String libelle;
 	private KListObject<KQuestionnaire> questionnaires;
 

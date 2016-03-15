@@ -22,12 +22,16 @@ public class KGroupe extends KObject {
 	private KListObject<KQuestionnaire> questionnaires;
 	@Expose
 	private KListObject<KUtilisateur> utilisateurs;
+	@Expose
 	private KListObject<KGroupe_questionnaire> groupe_questionnaires;
+	@Expose
 	private KListObject<KGroupe_utilisateur> groupe_utilisateurs;
 
 	public KGroupe() {
 		super();
-		// hasMany(KGroupe_utilisateur.class);hasMany(KGroupe_questionnaire.class);
+
+		hasMany(KGroupe_utilisateur.class);
+		hasMany(KGroupe_questionnaire.class);
 		hasAndBelongsToMany(KGroupe_questionnaire.class, KQuestionnaire.class);
 		hasAndBelongsToMany(KGroupe_utilisateur.class, KUtilisateur.class);
 	}

@@ -20,17 +20,34 @@ public class KQuestionnaire extends KObject {
 	@Expose
 	private int idDomaine;
 	@Expose
+	private int idUtilisateur;
+	@Expose
 	private String libelle;
 	@Expose
 	private KDomaine domaine;
-	private KListObject<KGroupe_questionnaire> groupe_questionnaires;
+	@Expose
+	private KListObject<KGroupe> groupes;
 	@Expose
 	private KListObject<KQuestion> questions;
+	@Expose
 	private KListObject<KRealisation> realisations;
+	@Expose
+	private KUtilisateur createur;
 
+	public KUtilisateur getCreateur() {
+		return createur;
+	}
+	public void setCreateur(KUtilisateur createur) {
+		this.createur = createur;
+	}
 	public KQuestionnaire() {
 		super();
-		//hasMany(KRealisation.class);hasMany(KQuestion.class);hasMany(KGroupe_questionnaire.class);belongsTo(KDomaine.class);
+		hasMany(KRealisation.class);
+		hasMany(KQuestion.class);
+		hasAndBelongsToMany(KGroupe_questionnaire.class, KGroupe.class);
+		belongsTo(KDomaine.class);
+		belongsTo(KRealisation.class);
+		belongsTo("createur", KUtilisateur.class);
 	}
 	/**
 	 * return the value of date
@@ -60,12 +77,12 @@ public class KQuestionnaire extends KObject {
 	public KDomaine getDomaine(){
 		return this.domaine;
 	}
-	/**
-	 * return the value of groupe_questionnaires
-	 * @return groupe_questionnaires
-	 */
-	public KListObject<KGroupe_questionnaire> getGroupe_questionnaires(){
-		return this.groupe_questionnaires;
+
+	public KListObject<KGroupe> getGroupes() {
+		return groupes;
+	}
+	public void setGroupes(KListObject<KGroupe> groupes) {
+		this.groupes = groupes;
 	}
 	/**
 	 * return the value of questions
@@ -110,13 +127,7 @@ public class KQuestionnaire extends KObject {
 	public void setDomaine(KDomaine aDomaine){
 		this.domaine=aDomaine;
 	}
-	/**
-	 * set the value of groupe_questionnaires
-	 * @param aGroupe_questionnaires
-	 */
-	public void setGroupe_questionnaires(KListObject<KGroupe_questionnaire> aGroupe_questionnaires){
-		this.groupe_questionnaires=aGroupe_questionnaires;
-	}
+
 	/**
 	 * set the value of questions
 	 * @param aQuestions

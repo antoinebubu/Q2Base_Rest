@@ -165,6 +165,28 @@ public abstract class CrudRestBase extends RestBase {
 		}
 		return message;
 	}
+	
+	/**
+	 * Delete a object
+	 * 
+	 * @return String message
+	 */
+	@DELETE
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/{iduser}/{idgroupe}")
+	public String deleteCIM(@PathParam("iduser") int iduser, @PathParam("idgroupe") int idgroupe) {
+		KObject object = KoSession.kloadOne(kobjectClass, idgroupe,iduser);
+		String message = "";
+		if (!object.isLoaded())
+			return returnMessage("L'objet d'id `" + iduser + " et " + idgroupe + "` n'existe pas", true);
+		try {
+			KoSession.delete(object);
+			message = returnValue(KString.capitalizeFirstLetter(displayName) + " `" + object + "` supprimé", displayName, object);
+		} catch (SQLException e) {
+			message = returnMessage(e.getMessage(), true);
+		}
+		return message;
+	}
 
 	@GET
 	@Path("/{id}/one/{member}/{cd}")

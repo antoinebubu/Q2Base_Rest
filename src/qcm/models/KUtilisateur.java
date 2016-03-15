@@ -14,12 +14,16 @@ import net.ko.persistence.annotation.Table;
 @Entity
 @Table(name = "utilisateur")
 public class KUtilisateur extends KObject {
+	@Expose
 	private int idRang;
 	@Expose
 	private String mail;
+	@Expose
 	private String nom;
 	private String password;
+	@Expose
 	private String prenom;
+	@Expose
 	private KRang rang;
 	@Expose
 	private KListObject<KGroupe> groupes;
@@ -32,11 +36,16 @@ public class KUtilisateur extends KObject {
 
 	public KUtilisateur() {
 		super();
+<<<<<<< HEAD
 		// belongsTo(KRang.class);
 		hasAndBelongsToMany(KGroupe_utilisateur.class, KGroupe.class);
 		hasAndBelongsToMany(KGroupe.class, KGroupe_questionnaire.class);
 		hasAndBelongsToMany(KGroupe_questionnaire.class, KQuestionnaire.class);
 		hasMany(KRealisation.class);
+=======
+		hasMany(KRealisation.class);hasMany(KGroupe_utilisateur.class);belongsTo(KRang.class);
+
+>>>>>>> origin/master
 	}
 
 	/**
