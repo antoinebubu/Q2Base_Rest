@@ -11,10 +11,10 @@ import com.google.gson.Gson;
 import net.ko.framework.KoSession;
 import net.ko.kobject.KListObject;
 import qcm.models.KQuestion;
-import qcm.models.KQuestionnaire;
 
 @Path("/question")
 public class Question extends CrudRestBase {
+
 	
 	@GET
 	@Path("/{id}")
@@ -39,4 +39,5 @@ public class Question extends CrudRestBase {
 		kobjectClass = KQuestion.class;
 		displayName = "question";
 	}
+
 }

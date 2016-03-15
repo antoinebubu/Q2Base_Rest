@@ -1,5 +1,7 @@
 package qcm.models;
 
+import com.google.gson.annotations.Expose;
+
 import net.ko.kobject.KObject;
 import net.ko.persistence.annotation.Entity;
 import net.ko.persistence.annotation.Table;
@@ -17,12 +19,14 @@ public class KGroupe_questionnaire extends KObject {
 	private int idGroupe;
 	@Id
 	private int idQuestionnaire;
+	@Expose
 	private KGroupe groupe;
 	private KQuestionnaire questionnaire;
 
 	public KGroupe_questionnaire() {
 		super();
 		//belongsTo(KQuestionnaire.class);belongsTo(KGroupe.class);
+		belongsTo(KQuestionnaire.class);
 	}
 	/**
 	 * return the value of idGroupe

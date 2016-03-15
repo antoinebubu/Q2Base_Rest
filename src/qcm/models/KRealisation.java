@@ -16,16 +16,23 @@ import net.ko.kobject.KListObject;
 @Table(name="realisation")
 public class KRealisation extends KObject {
 	private java.sql.Date date;
+	@Expose
 	private int idQuestionnaire;
+	@Expose
 	private int idUtilisateur;
+	@Expose
 	private int score;
+	@Expose
 	private KQuestionnaire questionnaire;
+	@Expose
 	private KListObject<KReponse_utilisateur> reponse_utilisateurs;
+	@Expose
 	private KUtilisateur utilisateur;
 
 	public KRealisation() {
 		super();
-		//belongsTo(KUtilisateur.class);hasMany(KReponse_utilisateur.class);belongsTo(KQuestionnaire.class);
+		//belongsTo(KUtilisateur.class);hasMany(KReponse_utilisateur.class);
+		belongsTo(KQuestionnaire.class);
 	}
 	/**
 	 * return the value of date
