@@ -23,13 +23,20 @@ public class KUtilisateur extends KObject {
 	private KRang rang;
 	@Expose
 	private KListObject<KGroupe> groupes;
+	@Expose
+	private KListObject<KQuestionnaire> questionnaires;
+	@Expose
+	private KListObject<KGroupe_questionnaire> groupe_questionnaires;
 	private KListObject<KGroupe_utilisateur> groupe_utilisateurs;
 	private KListObject<KRealisation> realisations;
 
 	public KUtilisateur() {
 		super();
-		// hasMany(KRealisation.class);belongsTo(KRang.class);
+		// belongsTo(KRang.class);
 		hasAndBelongsToMany(KGroupe_utilisateur.class, KGroupe.class);
+		hasAndBelongsToMany(KGroupe.class, KGroupe_questionnaire.class);
+		hasAndBelongsToMany(KGroupe_questionnaire.class, KQuestionnaire.class);
+		hasMany(KRealisation.class);
 	}
 
 	/**
