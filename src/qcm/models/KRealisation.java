@@ -31,12 +31,10 @@ public class KRealisation extends KObject {
 
 	public KRealisation() {
 		super();
-<<<<<<< HEAD
 		// belongsTo(KUtilisateur.class);hasMany(KReponse_utilisateur.class);belongsTo(KQuestionnaire.class);
-=======
-		//belongsTo(KUtilisateur.class);hasMany(KReponse_utilisateur.class);
+		// belongsTo(KUtilisateur.class);hasMany(KReponse_utilisateur.class);
 		belongsTo(KQuestionnaire.class);
->>>>>>> origin/master
+
 	}
 
 	/**

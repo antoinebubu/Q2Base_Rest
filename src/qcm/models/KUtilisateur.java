@@ -36,16 +36,14 @@ public class KUtilisateur extends KObject {
 
 	public KUtilisateur() {
 		super();
-<<<<<<< HEAD
 		// belongsTo(KRang.class);
 		hasAndBelongsToMany(KGroupe_utilisateur.class, KGroupe.class);
 		hasAndBelongsToMany(KGroupe.class, KGroupe_questionnaire.class);
 		hasAndBelongsToMany(KGroupe_questionnaire.class, KQuestionnaire.class);
 		hasMany(KRealisation.class);
-=======
-		hasMany(KRealisation.class);hasMany(KGroupe_utilisateur.class);belongsTo(KRang.class);
-
->>>>>>> origin/master
+		hasMany(KRealisation.class);
+		hasMany(KGroupe_utilisateur.class);
+		belongsTo(KRang.class);
 	}
 
 	/**
