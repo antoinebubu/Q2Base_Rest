@@ -1,7 +1,6 @@
 package qcm.rest.service;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Context;
 
 import com.google.gson.Gson;
@@ -17,9 +16,6 @@ public abstract class RestBase {
 	@Context
 	protected ServletContext context;
 
-	@Context
-	protected HttpServletRequest request;
-
 	public RestBase() {
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(KListObject.class, new KlistObjectAdapter());
@@ -34,16 +30,12 @@ public abstract class RestBase {
 	}
 
 	/**
-	 * retourne un message JSON contenant l'objet affectï¿½
+	 * retourne un message JSON contenant l'objet affecté
 	 * 
-	 * @param message
-	 *            message de retour
-	 * @param key
-	 *            clï¿½ de l'objet affectï¿½
-	 * @param value
-	 *            objet affectï¿½
-	 * @param keyValues
-	 *            fin de chaï¿½ne JSON ï¿½ ajouter ï¿½ la rï¿½ponse
+	 * @param message message de retour
+	 * @param key clé de l'objet affecté
+	 * @param value objet affecté
+	 * @param keyValues fin de chaîne JSON à ajouter à la réponse
 	 * @return
 	 */
 	protected <T> String returnValue(String message, String key, T value, String keyValues) {
@@ -54,7 +46,7 @@ public abstract class RestBase {
 	}
 
 	/**
-	 * retourne une chaï¿½ne JSON contenant un message, l'objet affectï¿½ et sa clï¿½
+	 * retourne une chaîne JSON contenant un message, l'objet affecté et sa clé
 	 * 
 	 * @param message
 	 * @param key
@@ -66,7 +58,7 @@ public abstract class RestBase {
 	}
 
 	/**
-	 * retourne une chaï¿½ne JSON contenant un message et l'objet affectï¿½
+	 * retourne une chaîne JSON contenant un message et l'objet affecté
 	 * 
 	 * @param message
 	 * @param value
@@ -77,7 +69,7 @@ public abstract class RestBase {
 	}
 
 	/**
-	 * retourne une chaï¿½ne JSON contenant un message
+	 * retourne une chaîne JSON contenant un message
 	 * 
 	 * @param message
 	 * @return
@@ -87,12 +79,10 @@ public abstract class RestBase {
 	}
 
 	/**
-	 * retourne une chaï¿½ne JSON contenant un message avec erreur ou non
+	 * retourne une chaîne JSON contenant un message avec erreur ou non
 	 * 
-	 * @param message
-	 *            contenu du message
-	 * @param hasError
-	 *            prï¿½sence d'une erreur
+	 * @param message contenu du message
+	 * @param hasError présence d'une erreur
 	 * @return
 	 */
 	protected String returnMessage(String message, boolean hasError) {

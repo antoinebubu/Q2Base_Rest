@@ -2,10 +2,10 @@ package qcm.models;
 
 import com.google.gson.annotations.Expose;
 
+import net.ko.kobject.KListObject;
 import net.ko.kobject.KObject;
 import net.ko.persistence.annotation.Entity;
 import net.ko.persistence.annotation.Table;
-import net.ko.kobject.KListObject;
 
 
 /**
@@ -19,6 +19,10 @@ public class KQuestion extends KObject {
 	private int idQuestionnaire;
 	@Expose
 	private String libelle;
+	
+
+	@Expose
+	private KListObject<KQuestionnaire> questionnaires;
 	@Expose
 	private KListObject<KReponse> reponses;
 	@Expose
@@ -26,7 +30,11 @@ public class KQuestion extends KObject {
 
 	public KQuestion() {
 		super();
-		//belongsTo(KQuestionnaire.class);hasMany(KReponse.class);
+
+		hasMany(KReponse.class);
+		belongsTo(KQuestionnaire.class);
+		hasMany(KQuestion.class);
+
 	}
 	/**
 	 * return the value of idQuestionnaire

@@ -11,6 +11,7 @@ public class Questionnaire extends CrudRestBase {
 		super();
 		kobjectClass = KQuestionnaire.class;
 		displayName = "questionnaire";
+
 	}
 
 }

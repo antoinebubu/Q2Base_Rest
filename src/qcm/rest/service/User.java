@@ -1,8 +1,5 @@
 package qcm.rest.service;
 
-import java.math.BigInteger;
-import java.security.SecureRandom;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -62,49 +59,50 @@ public class User extends CrudRestBase {
 		return result;
 	}
 
-	protected SecureRandom random;
-
 	@POST
 	@Path("/connect")
 	@Consumes("application/x-www-form-urlencoded")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String connect(@FormParam("mail") String login, @FormParam("password") String password) {
-		KUtilisateur user = KoSession.kloadOne(KUtilisateur.class, "mail='" + login + "'");
+	public String connect(@FormParam("login") String login, @FormParam("password") String password) {
+		KUtilisateur user = KoSession.kloadOne(KUtilisateur.class, "login='" + login + "'");
 		String result = returnMessage("Login ou mot de passe invalides", true);
+
 		if (user.isLoaded()) {
 			if (user.getPassword().equals(password)) {
-				random = new SecureRandom();
-				String bi = new BigInteger(130, random).toString(32);
-				request.getSession().setAttribute("token", bi);
-				result = returnValue("Connexion réussie de " + user, "utilisateur", user, "\"connected\":true");
+				result = returnValue("Connexion r�ussie de " + user, "utilisateur", user, "\"connected\":true");
 			}
 		}
 		return result;
 	}
 
-	@POST
-	@Path("/recovery")
-	@Consumes("application/x-www-form-urlencoded")
-	@Produces(MediaType.APPLICATION_JSON)
-	public String recovery(@FormParam("mail") String mail) {
-		String message = returnMessage("Mail invalide", false);
-		KUtilisateur user = KoSession.kloadOne(KUtilisateur.class, "mail='" + mail + "'");
-		if (user.isLoaded()) {
-			message = returnMessage("Mail envoyé !", true);
-		}
-		return message;
-	}
-
-	@GET
-	@Path("/checkConnected")
-	@Produces(MediaType.APPLICATION_JSON)
-	public String checkConnected() {
-		String result = "false";
-		Object token = request.getSession().getAttribute("token");
-		if (token != null) {
-			result = "true";
-		}
-		return result;
-	}
+	/*
+	 * @GET
+	 * 
+	 * @Path("/all")
+	 * 
+	 * @Produces(MediaType.APPLICATION_JSON) public String getAll() {
+	 * KListObject<KUtilisateur> users =
+	 * KoHttp.getDao(KUtilisateur.class).readAll(); Gson gson = new Gson();
+	 * return gson.toJson(users.asAL()); }
+	 * 
+	 * @PUT
+	 * 
+	 * @Path("/add")
+	 * 
+	 * @Consumes("application/x-www-form-urlencoded") public String
+	 * addOne(MultivaluedHashMap<String, String> formParams) { KUtilisateur user
+	 * = new KUtilisateur(); String message =
+	 * "{\"message\":\"Insertion réussie\"}"; for(String
+	 * param:formParams.keySet()) { try { String value =
+	 * formParams.getFirst(param) + ""; value =
+	 * value.replaceFirst("^\\[(.*)\\]$", "$1"); user.setAttribute(param, value,
+	 * false); } catch (SecurityException | IllegalArgumentException |
+	 * NoSuchFieldException | IllegalAccessException | InvocationTargetException
+	 * e) { } }
+	 * 
+	 * try { KoHttp.getDao(KUtilisateur.class).create(user); } catch (Exception
+	 * e) { message = "{\"erreur\":\"" + e.getMessage() + "\"}"; } return
+	 * message; }
+	 */
 
 }

@@ -12,10 +12,17 @@ import net.ko.framework.KoSession;
 import net.ko.kobject.KListObject;
 import qcm.models.KQuestion;
 
-@Path("/question")
-public class Question extends CrudRestBase {
 
-	
+	@Path("/question")
+	public class Question extends CrudRestBase {
+
+		public Question() {
+			super();
+			kobjectClass = KQuestion.class;
+			displayName = "question";
+		}
+
+
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -34,10 +41,7 @@ public class Question extends CrudRestBase {
 		return result;
 	}	
 	
-	public Question() {
-		super();
-		kobjectClass = KQuestion.class;
-		displayName = "question";
-	}
 
-}
+	}
+	
+
