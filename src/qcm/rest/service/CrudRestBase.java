@@ -14,8 +14,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 
-
-
 import net.ko.framework.Ko;
 import net.ko.framework.KoSession;
 import net.ko.kobject.KListObject;
@@ -27,7 +25,8 @@ public abstract class CrudRestBase extends RestBase {
 	protected String displayName;
 
 	/**
-	 * Affecte les paramètres de la requête aux membres du même nom de l'objet
+	 * Affecte les paramï¿½tres de la requï¿½te aux membres du mï¿½me nom de
+	 * l'objet
 	 * 
 	 * @param obj
 	 * @param formParams
@@ -35,11 +34,16 @@ public abstract class CrudRestBase extends RestBase {
 	 * @throws NoSuchFieldException
 	 * @throws IllegalAccessException
 	 */
-	protected void setValuesToKObject(KObject obj, MultivaluedMap<String, String> formParams) throws SecurityException, IllegalAccessException {
+	protected void setValuesToKObject(KObject obj, MultivaluedMap<String, String> formParams)
+			throws SecurityException, IllegalAccessException {
 		obj.setAttributes(formParams, new Function<String, String>() {
 			@Override
 			public String apply(String t) {
-				return t.replaceFirst("^\\[(.*)\\]$", "$1");
+				String result = null;
+				if (t != null) {
+					result = t.replaceFirst("^\\[(.*)\\]$", "$1");
+				}
+				return result;
 			}
 		}, false);
 	}
@@ -78,6 +82,49 @@ public abstract class CrudRestBase extends RestBase {
 	}
 
 	@GET
+	@Path("/limit/{offset}/{limit}/{cd}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getAllLimitOffest(@PathParam("offset") Integer offset, @PathParam("limit") Integer limit,
+			@PathParam("cd") Integer constraintDepht) {
+		if (constraintDepht != null)
+			Ko.setTempConstraintDeph(constraintDepht);
+		KListObject<? extends KObject> objects = KoSession.kloadMany(kobjectClass, "1=1 LIMIT " + offset + "," + limit);
+		if (constraintDepht != null)
+			Ko.restoreConstraintDeph();
+		String result = gson.toJson(objects.asAL());
+		return result;
+	}
+
+	@GET
+	@Path("/limit/{offset}/{limit}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getAllLimitOffest(@PathParam("offset") Integer offset, @PathParam("limit") Integer limit) {
+		KListObject<? extends KObject> objects = KoSession.kloadMany(kobjectClass, "1=1 LIMIT " + offset + "," + limit);
+		String result = gson.toJson(objects.asAL());
+		return result;
+	}
+
+	@GET
+	@Path("/limit/{limit}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getAllLimit(@PathParam("limit") Integer limit) {
+		return getAllLimitOffest(0, limit);
+	}
+
+	@GET
+	@Path("/count")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getcount() {
+		String result = null;
+		try {
+			result = String.valueOf(KoSession.count(kobjectClass));
+		} catch (SQLException e) {
+			result = null;
+		}
+		return result;
+	}
+
+	@GET
 	@Path("/{id}/{cd}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getOne(@PathParam("id") int id, @PathParam("cd") Integer constraintDepht) {
@@ -113,7 +160,8 @@ public abstract class CrudRestBase extends RestBase {
 		try {
 			setValuesToKObject(object, formParams);
 			KoSession.update(object);
-			message = returnValue(KString.capitalizeFirstLetter(displayName) + " `" + object + "` mis à jour", displayName, object);
+			message = returnValue(KString.capitalizeFirstLetter(displayName) + " `" + object + "` mis ï¿½ jour",
+					displayName, object);
 		} catch (SecurityException | IllegalAccessException | SQLException e) {
 			message = returnMessage(e.getMessage(), true);
 		}
@@ -135,7 +183,8 @@ public abstract class CrudRestBase extends RestBase {
 			object = kobjectClass.newInstance();
 			setValuesToKObject(object, formParams);
 			KoSession.add(object);
-			message = returnValue(KString.capitalizeFirstLetter(displayName) + " `" + object + "` inséré", displayName, object);
+			message = returnValue(KString.capitalizeFirstLetter(displayName) + " `" + object + "` insï¿½rï¿½",
+					displayName, object);
 		} catch (SecurityException | IllegalAccessException | SQLException | InstantiationException e) {
 			message = returnMessage(e.getMessage(), true);
 		}
@@ -157,13 +206,14 @@ public abstract class CrudRestBase extends RestBase {
 			return returnMessage("L'objet d'id `" + id + "` n'existe pas", true);
 		try {
 			KoSession.delete(object);
-			message = returnValue(KString.capitalizeFirstLetter(displayName) + " `" + object + "` supprimé", displayName, object);
+			message = returnValue(KString.capitalizeFirstLetter(displayName) + " `" + object + "` supprimï¿½",
+					displayName, object);
 		} catch (SQLException e) {
 			message = returnMessage(e.getMessage(), true);
 		}
 		return message;
 	}
-	
+
 	/**
 	 * Delete a object
 	 * 
@@ -173,13 +223,14 @@ public abstract class CrudRestBase extends RestBase {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{iduser}/{idgroupe}")
 	public String deleteCIM(@PathParam("iduser") int iduser, @PathParam("idgroupe") int idgroupe) {
-		KObject object = KoSession.kloadOne(kobjectClass, idgroupe,iduser);
+		KObject object = KoSession.kloadOne(kobjectClass, idgroupe, iduser);
 		String message = "";
 		if (!object.isLoaded())
 			return returnMessage("L'objet d'id `" + iduser + " et " + idgroupe + "` n'existe pas", true);
 		try {
 			KoSession.delete(object);
-			message = returnValue(KString.capitalizeFirstLetter(displayName) + " `" + object + "` supprimé", displayName, object);
+			message = returnValue(KString.capitalizeFirstLetter(displayName) + " `" + object + "` supprimï¿½",
+					displayName, object);
 		} catch (SQLException e) {
 			message = returnMessage(e.getMessage(), true);
 		}
@@ -189,7 +240,8 @@ public abstract class CrudRestBase extends RestBase {
 	@GET
 	@Path("/{id}/one/{member}/{cd}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getMember(@PathParam("id") int id, @PathParam("member") String member, @PathParam("cd") Integer constraintDepht) {
+	public String getMember(@PathParam("id") int id, @PathParam("member") String member,
+			@PathParam("cd") Integer constraintDepht) {
 		KObject object = loadOne(id, constraintDepht);
 		String message = "";
 		if (!object.isLoaded())
@@ -213,7 +265,8 @@ public abstract class CrudRestBase extends RestBase {
 	@GET
 	@Path("/{id}/all/{member}/{cd}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getListMember(@PathParam("id") int id, @PathParam("member") String member, @PathParam("cd") Integer constraintDepht) {
+	public String getListMember(@PathParam("id") int id, @PathParam("member") String member,
+			@PathParam("cd") Integer constraintDepht) {
 		if (constraintDepht != null)
 			Ko.setTempConstraintDeph(constraintDepht);
 		KObject object = KoSession.kloadOne(kobjectClass, id);
@@ -244,4 +297,19 @@ public abstract class CrudRestBase extends RestBase {
 	public String getListMember(@PathParam("id") int id, @PathParam("member") String member) {
 		return getListMember(id, member, null);
 	}
+
+	@GET
+	@Path("/updated/{timestamp}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String isUpdated(@PathParam("timestamp") long timestamp) {
+		long contextTimestamp = timestamp - 1;
+
+		if (context.getAttribute(kobjectClass.getName()) != null)
+			contextTimestamp = (long) this.context.getAttribute(kobjectClass.getName());
+
+		if (contextTimestamp > timestamp)
+			return "true";
+		return "false";
+	}
+
 }
