@@ -3,7 +3,6 @@ package qcm.models;
 import com.google.gson.annotations.Expose;
 
 import net.ko.kobject.KListObject;
-import net.ko.kobject.KObject;
 import net.ko.persistence.annotation.Entity;
 import net.ko.persistence.annotation.Table;
 
@@ -13,13 +12,14 @@ import net.ko.persistence.annotation.Table;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "utilisateur")
-public class KUtilisateur extends KObject {
+public class KUtilisateur extends KRestObject {
 	@Expose
 	private int idRang;
 	@Expose
 	private String mail;
 	@Expose
 	private String nom;
+	@Expose
 	private String password;
 	@Expose
 	private String prenom;
@@ -32,7 +32,9 @@ public class KUtilisateur extends KObject {
 
 	public KUtilisateur() {
 		super();
-		hasMany(KRealisation.class);hasMany(KGroupe_utilisateur.class);belongsTo(KRang.class);
+		hasMany(KRealisation.class);
+		hasMany(KGroupe_utilisateur.class);
+		belongsTo(KRang.class);
 
 	}
 
