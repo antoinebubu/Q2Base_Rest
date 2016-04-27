@@ -160,7 +160,7 @@ public abstract class CrudRestBase extends RestBase {
 		try {
 			setValuesToKObject(object, formParams);
 			KoSession.update(object);
-			message = returnValue(KString.capitalizeFirstLetter(displayName) + " `" + object + "` mis � jour",
+			message = returnValue(KString.capitalizeFirstLetter(displayName) + " `" + object + "` mis a jour",
 					displayName, object);
 		} catch (SecurityException | IllegalAccessException | SQLException e) {
 			message = returnMessage(e.getMessage(), true);

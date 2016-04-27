@@ -16,7 +16,7 @@ public class KRang extends KRestObject {
 
 	public KRang() {
 		super();
-		// hasMany(KUtilisateur.class);
+		hasMany(KUtilisateur.class);
 	}
 
 	/**
