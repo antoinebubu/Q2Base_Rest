@@ -1,5 +1,7 @@
 package qcm.models;
 
+import com.google.gson.annotations.Expose;
+
 import net.ko.kobject.KListObject;
 import net.ko.persistence.annotation.Entity;
 import net.ko.persistence.annotation.Table;
@@ -11,7 +13,10 @@ import net.ko.persistence.annotation.Table;
 @Entity
 @Table(name = "rang")
 public class KRang extends KRestObject {
+	
+	@Expose
 	private String libelle;
+	@Expose
 	private KListObject<KUtilisateur> utilisateurs;
 
 	public KRang() {
